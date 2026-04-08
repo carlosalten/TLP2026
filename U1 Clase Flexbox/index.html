@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flexbox — Guía Visual</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/ejemplo_flex.css" />
+  </head>
+  <body>
+    <!-- -------- encabezado ------- -->
+    <header>
+      <span class="tag">CSS3 · Layout Module</span>
+      <h1>Flexbox</h1>
+      <p>// guía visual de propiedades principales</p>
+    </header>
+
+    <!-- ───────────── 1. flex-direction ───────────── -->
+    <section>
+      <div class="section-label">
+        <span class="num">01</span>
+        <h2>flex-direction</h2>
+      </div>
+      <div class="demo">
+        <p class="demo-desc">
+          Define el <span>eje principal</span>. Los ítems se disponen a lo largo
+          de él.
+        </p>
+        <div class="two-col">
+          <div>
+            <p class="sub-label">row (default)</p>
+            <div class="flex-box dir-row">
+              <div class="item">A</div>
+              <div class="item">B</div>
+              <div class="item">C</div>
+            </div>
+          </div>
+          <div>
+            <p class="sub-label">row-reverse</p>
+            <div class="flex-box dir-rrev">
+              <div class="item">A</div>
+              <div class="item">B</div>
+              <div class="item">C</div>
+            </div>
+          </div>
+          <div>
+            <p class="sub-label">column</p>
+            <div class="flex-box dir-col">
+              <div class="item">A</div>
+              <div class="item">B</div>
+              <div class="item">C</div>
+            </div>
+          </div>
+          <div>
+            <p class="sub-label">column-reverse</p>
+            <div class="flex-box dir-crev">
+              <div class="item">A</div>
+              <div class="item">B</div>
+              <div class="item">C</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────── 2. flex-wrap ───────────── -->
+    <section>
+      <div class="section-label">
+        <span class="num">02</span>
+        <h2>flex-wrap</h2>
+        <span class="prop">contenedor</span>
+      </div>
+      <div class="demo">
+        <p class="demo-desc">
+          Controla si los ítems se <span>desbordan</span> o saltan a una nueva
+          línea.
+        </p>
+        <div class="two-col">
+          <div>
+            <p class="sub-label">nowrap (default) — se comprime</p>
+            <div class="flex-box wrap-nowrap">
+              <div class="item fat">Ítem 1</div>
+              <div class="item fat">Ítem 2</div>
+              <div class="item fat">Ítem 3</div>
+              <div class="item fat">Ítem 4</div>
+            </div>
+          </div>
+          <div>
+            <p class="sub-label">wrap — salta de línea</p>
+            <div class="flex-box wrap-wrap">
+              <div class="item fat">Ítem 1</div>
+              <div class="item fat">Ítem 2</div>
+              <div class="item fat">Ítem 3</div>
+              <div class="item fat">Ítem 4</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────── 3. justify-content ───────────── -->
+    <section>
+      <div class="section-label">
+        <span class="num">03</span>
+        <h2>justify-content</h2>
+        <span class="prop">contenedor</span>
+      </div>
+      <div class="demo">
+        <p class="demo-desc">
+          Alinea los ítems a lo largo del <span>eje principal</span> (horizontal
+          en row).
+        </p>
+        <div class="three-col">
+          <div>
+            <p class="sub-label">flex-start</p>
+            <div class="flex-box jc-flex-start">
+              <div class="item">1</div>
+              <div class="item">2</div>
+              <div class="item">3</div>
+            </div>
+          </div>
+          <div>
+            <p class="sub-label">flex-end</p>
+            <div class="flex-box jc-flex-end">
+              <div class="item">1</div>
+              <div class="item">2</div>
+              <div class="item">3</div>
+            </div>
+          </div>
+          <div>
+            <p class="sub-label">center</p>
+            <div class="flex-box jc-center">
+              <div class="item">1</div>
+              <div class="item">2</div>
+              <div class="item">3</div>
+            </div>
+          </div>
+          <div>
+            <p class="sub-label">space-between</p>
+            <div class="flex-box jc-space-between">
+              <div class="item">1</div>
+              <div class="item">2</div>
+              <div class="item">3</div>
+            </div>
+          </div>
+          <div>
+            <p class="sub-label">space-around</p>
+            <div class="flex-box jc-space-around">
+              <div class="item">1</div>
+              <div class="item">2</div>
+              <div class="item">3</div>
+            </div>
+          </div>
+          <div>
+            <p class="sub-label">space-evenly</p>
+            <div class="flex-box jc-space-evenly">
+              <div class="item">1</div>
+              <div class="item">2</div>
+              <div class="item">3</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────── 4. align-items ───────────── -->
+    <section>
+      <div class="section-label">
+        <span class="num">04</span>
+        <h2>align-items</h2>
+        <span class="prop">contenedor</span>
+      </div>
+      <div class="demo">
+        <p class="demo-desc">
+          Alinea los ítems en el <span>eje cruzado</span> (vertical en row).
+        </p>
+        <div class="three-col">
+          <div>
+            <p class="sub-label">flex-start</p>
+            <div class="flex-box ai-box ai-flex-start">
+              <div class="item tall">A</div>
+              <div class="item">B</div>
+              <div class="item tall">C</div>
+            </div>
+          </div>
+          <div>
+            <p class="sub-label">flex-end</p>
+            <div class="flex-box ai-box ai-flex-end">
+              <div class="item tall">A</div>
+              <div class="item">B</div>
+              <div class="item tall">C</div>
+            </div>
+          </div>
+          <div>
+            <p class="sub-label">center</p>
+            <div class="flex-box ai-box ai-center">
+              <div class="item tall">A</div>
+              <div class="item">B</div>
+              <div class="item tall">C</div>
+            </div>
+          </div>
+          <div>
+            <p class="sub-label">stretch (default)</p>
+            <div class="flex-box ai-box ai-stretch">
+              <div class="item">A</div>
+              <div class="item">B</div>
+              <div class="item">C</div>
+            </div>
+          </div>
+          <div>
+            <p class="sub-label">baseline</p>
+            <div
+              class="flex-box ai-box ai-baseline"
+              style="align-items: baseline"
+            >
+              <div class="item" style="font-size: 1.4rem">A</div>
+              <div class="item" style="font-size: 0.7rem">B</div>
+              <div class="item" style="font-size: 1rem">C</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

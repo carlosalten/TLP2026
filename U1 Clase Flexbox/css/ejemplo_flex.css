@@ -1,0 +1,267 @@
+/* html{
+  font-size: 18px;
+} */
+
+/* aquí voy a poner variables que quiero que estén disponibles globalmente */
+:root {
+  --bg: #0d0d0f;
+  --surface: #06060e;
+  --border: #2a2a32;
+  --accent: #f5c518;
+  --accent2: #18f5c5;
+  --accent3: #f518a0;
+  --text: #e8e8f0;
+  --muted: #6b6b80;
+  --radius: 10px;
+  --mono: "Space Mono", monospace;
+  --sans: "Syne", sans-serif;
+}
+
+/* todos los elementos incluyen en su ancho total el padding y el borde (por defecto es box-sizing: content-box).
+además todos por defecto tienen margin y padding 0 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  min-height: 100vh; /* ocupa como mínimo toda la altura de la pantalla */
+  padding: 2rem 1.5rem 4rem; /* top:2, izq y der: 1.5, abajo: 4 */
+}
+
+/* ── HEADER ── */
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem; /* espacio entre elementos en el main axis */
+  margin-bottom: 3rem;
+  border-left: 4px solid var(--accent);
+  padding-left: 1.2rem;
+}
+
+/* todas las .tag que estén dentro del header */
+header .tag {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--accent);
+  letter-spacing: 0.15em; /*espacio entre letras*/
+  text-transform: uppercase;
+}
+
+header h1 {
+  /*clamp(MÍNIMO, VALOR IDEAL, MÁXIMO)*/
+  /* no más pequeño que 2rem, no más grande que 3.4rem, aumenta en incrementos de 6% del ancho de la pantalla */
+  font-size: clamp(2rem, 6vw, 3.4rem);
+  font-weight: 800; /* un poco más grueso que bold (700)*/
+  line-height: 1; /* altura de la linea es exactamente igual al tamaño de la fuente (font-size) */
+  letter-spacing: -0.02em;
+}
+
+header p {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  margin-top: 0.3rem;
+}
+
+/* ── SECTION ── */
+section {
+  margin-bottom: 3.5rem;
+}
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem; /* espacio entre ítems */
+  margin-bottom: 1.2rem;
+}
+.section-label .num {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--accent);
+  /* rojo, verde, azul (escala 0 a 255), transparencia (escala 0 a 1) */
+  background: rgba(245, 197, 24, 0.1);
+  border: 1px solid rgba(245, 197, 24, 0.3);
+  padding: 0.2rem 0.55rem;
+  border-radius: 0.25rem;
+}
+.section-label h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* ── DEMO BOX ── */
+.demo {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  overflow: hidden; /* todo el contenido que escape el borde no se muestra */
+}
+
+.demo-desc {
+  font-family: var(--mono);
+  font-size: 0.73rem;
+  color: var(--muted);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+.demo-desc span {
+  color: var(--accent2);
+}
+
+/* ── FLEX CONTAINER ── */
+.flex-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px dashed var(--border);
+  border-radius: 0.4rem;
+  padding: 0.75rem;
+  min-height: 5rem;
+}
+
+.item {
+  /* 0 grados es hacia arriba*/
+  background: linear-gradient(
+    135deg,
+    rgba(245, 197, 24, 0.15),
+    rgba(245, 197, 24, 0.05)
+  );
+  border: 1px solid rgba(245, 197, 24, 0.35);
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.4rem;
+  padding: 0.6rem 1rem;
+  min-width: 4rem;
+}
+/* .item.tall {
+  height: 80px;
+}
+.item.fat {
+  min-width: 120px;
+} */
+
+.sub-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+/* control de columnas */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.three-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.8rem;
+}
+
+/* ── 1. flex-direction ── */
+.dir-row {
+  display: flex;
+  flex-direction: row;
+  gap: 0.6rem;
+}
+
+.dir-rrev {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 0.6rem;
+}
+
+.dir-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.dir-crev {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.6rem;
+}
+
+/* ── 2. flex-wrap ── */
+.wrap-nowrap {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+}
+.wrap-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* ── 3. justify-content ── */
+.jc-flex-start {
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+.jc-flex-end {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+.jc-center {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.jc-space-between {
+  display: flex;
+  justify-content: space-between;
+}
+.jc-space-around {
+  display: flex;
+  justify-content: space-around;
+}
+.jc-space-evenly {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+/* ── 4. align-items ── */
+.ai-box {
+  min-height: 100px;
+}
+.ai-flex-start {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+.ai-flex-end {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+.ai-center {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.ai-stretch {
+  display: flex;
+  align-items: stretch;
+  gap: 0.5rem;
+}
+.ai-baseline {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
