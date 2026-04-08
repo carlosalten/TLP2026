@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejemplo Tailwind Responsivo</title>
+    <link rel="stylesheet" href="css/tailwind.css" />
+  </head>
+  <body class="bg-gray-50 min-h-screen flex flex-col">
+    <!-- navbar -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <!-- marca -->
+          <div class="text-2xl font-bold text-blue-600">MiMarca</div>
+
+          <!-- links -->
+          <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+            <a href="#" class="hover:text-blue-600 transition-colors">Inicio</a>
+            <a href="#" class="hover:text-blue-600 transition-colors">Servicios</a>
+            <a href="#" class="hover:text-blue-600 transition-colors">Precios</a>
+            <a href="#" class="hover:text-blue-600 transition-colors">Blog</a>
+          </div>
+
+          <!-- botón -->
+          <button
+            class="bg-blue-600 text-white px-5 py-2 rounded-xl text-sm font-semibold hover:bg-blue-700 transition-colors"
+          >
+            Contactar
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- hero -->
+    <header class="bg-linear-to-br from-blue-600 to-indigo-800 text-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 lg:py-32">
+        <div class="max-w-3xl mx-auto text-center">
+          <!-- título -->
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+            Crear sitios web <span class="text-blue-200">hermosos</span> y rápidos
+          </h1>
+          <!-- párrafo -->
+          <p class="text-lg md:text-xl text-blue-100 mb-10 max-w-2xl mx-auto">
+            Aprende Tailwind CSS con ejemplos prácticos y construye interfaces modernas y
+            completamente responsivas.
+          </p>
+          <!-- botón -->
+          <button
+            class="bg-white text-blue-700 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-blue-50 transition-colors"
+          >
+            Empezar Ahora
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- cards -->
+
+    <!-- footer -->
+  </body>
+</html>
