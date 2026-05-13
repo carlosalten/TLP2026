@@ -16,6 +16,35 @@ const columns: TableColumn<Curso>[] = [
 ]
 
 const tableMeta = createTableMeta<Curso>()
+
+// ref significa variable reactiva.
+// cuando cambian de valor, VUE actualiza la página
+const mostrarFormulario = ref(false)
+const guardandoCurso = ref(false)
+const errorFormulario = ref('')
+
+// objeto reactivo
+// se usa ref para variables.
+// se usa reactive para objetos y arrays.
+const formCurso = reactive({
+    nombre: '',
+    nivel: '',
+    anio: new Date().getFullYear()
+})
+
+function limpiarFormulario() {
+    formCurso.nombre = ''
+    formCurso.nivel = ''
+    formCurso.anio = new Date().getFullYear()
+    errorFormulario.value = ''
+}
+
+function cerrarFormulario() {
+    mostrarFormulario.value = false
+    limpiarFormulario()
+}
+
+async function guardarCurso() { }
 </script>
 
 <template>
@@ -44,6 +73,12 @@ const tableMeta = createTableMeta<Curso>()
                     <h2 class="text-lg font-semibold text-course-text">Listado de cursos</h2>
                     <p class="text-sm text-course-text-muted">Se muestran los cursos del año 2026.</p>
                 </div>
+
+                <!-- botón para mostrar formulario -->
+                <UButton icon="i-heroicons-plus" variant="soft" @click="mostrarFormulario = true"
+                    class="selft-start rounded-full px-5 text-course-accent-strong shadow-sm">
+                    Agregar Curso
+                </UButton>
             </div>
 
             <!-- Cargando -->
@@ -59,4 +94,44 @@ const tableMeta = createTableMeta<Curso>()
         </div>
     </div>
 
+    <!-- Modal Agregar Curso -->
+    <BaseFormModal v-model:open="mostrarFormulario" title="Agregar Curso"
+        description="Completa los datos para registrar un nuevo curso.">
+        <form class="space-y-4" @submit.prevent="guardarCurso">
+            <!-- nombre -->
+            <UFormField label="Nombre" name="nombre" :ui="modalFormFieldUi">
+                <UInput v-model="formCurso.nombre" color="neutral" variant="outline" :ui="modalInputUi" class="w-full"
+                    placeholder="Ej: 1° Básico" />
+            </UFormField>
+
+            <!-- nivel -->
+            <UFormField label="Nivel" name="nivel" :ui="modalFormFieldUi">
+                <UInput v-model="formCurso.nivel" color="neutral" variant="outline" :ui="modalInputUi" class="w-full"
+                    placeholder="Ej: 1, 2, 3, ..." />
+            </UFormField>
+
+            <!-- año -->
+            <UFormField label="Año" name="anio" :ui="modalFormFieldUi">
+                <UInput v-model="formCurso.anio" color="neutral" variant="outline" :ui="modalInputUi" class="w-full"
+                    placeholder="Ej: 2026" />
+            </UFormField>
+
+            <!-- mensaje de error -->
+            <UAlert v-if="errorFormulario" color="error" variant="soft" icon="i-heroicons-exclamation-circle"
+                :title="errorFormulario" />
+
+            <!-- botones -->
+            <div class="flex justify-end gap-3 pt-2">
+                <!-- botón cancelar -->
+                <UButton type="button" color="neutral" variant="subtle" @click="cerrarFormulario">
+                    Cancelar
+                </UButton>
+
+                <!-- botón para guardar -->
+                <UButton type="submit" color="primary" icon="i-heroicons-check" :loading="guardandoCurso">
+                    Guardar Curso
+                </UButton>
+            </div>
+        </form>
+    </BaseFormModal>
 </template>
