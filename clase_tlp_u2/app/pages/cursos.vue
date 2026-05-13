@@ -44,7 +44,28 @@ function cerrarFormulario() {
     limpiarFormulario()
 }
 
-async function guardarCurso() { }
+async function guardarCurso() {
+    errorFormulario.value = ''
+    guardandoCurso.value = true
+
+    try {
+        await $fetch('/api/cursos', {
+            method: 'POST',
+            body: {
+                nombre: formCurso.nombre,
+                nivel: formCurso.nivel,
+                anio: formCurso.anio
+            }
+        })
+        cerrarFormulario()
+        await refresh()
+    } catch (err: any) {
+        errorFormulario.value = getApiErrorMessage(err, 'No se pudo guardar el curso.')
+    }
+    finally {
+        guardandoCurso.value = false
+    }
+}
 </script>
 
 <template>
@@ -63,6 +84,10 @@ async function guardarCurso() { }
                 </div>
 
                 <!-- Botón Actualizar -->
+                <UButton icon="i-heroicons-arrow-path" color="primary" variant="soft" :loading="pending"
+                    @click="() => refresh()" class="self-start rounded-full px-5 text-course-accent-strong shadow-sm">
+                    Actualizar
+                </UButton>
             </div>
         </div>
 
@@ -82,15 +107,26 @@ async function guardarCurso() { }
             </div>
 
             <!-- Cargando -->
+            <div v-if="pending" class="space-y-4 rounded-3xl border border-course-line bg-course-surface-soft p-6">
+                <div class="space-y-1">
+                    <p class="text-sm font-semibold text-course-header">Cargando cursos...</p>
+                    <p class="text-sm text-course-text-muted">Estamos actualizando la información de la tabla.</p>
+                </div>
+                <USkeleton class="h-96 w-full rounded-3xl bg-course-line-soft" />
+            </div>
 
             <!-- Error -->
+            <UAlert v-if="error" color="error" variant="soft"
+                class="rounded-3xl border border-course-line-accent bg-course-surface-accent text-course-header"
+                :title="error.statusMessage || 'Error al cargar los cursos'" icon="i-heroicons-exclamation-triangle" />
 
             <!-- Tabla de cursos -->
             <UTable v-if="cursos && cursos.length > 0" :data="cursos" :columns="columns" :meta="tableMeta"
                 class="overflow-hidden rounded-lg border border-course-line bg-course-surface" />
 
             <!-- Mensaje si no hay cursos -->
-            <EmptyState v-if="!pending && (!cursos || cursos.length == 0)" mensaje="No hay cursos actualmente" />
+            <EmptyState v-if="!error && !pending && (!cursos || cursos.length == 0)"
+                mensaje="No hay cursos actualmente" />
         </div>
     </div>
 
