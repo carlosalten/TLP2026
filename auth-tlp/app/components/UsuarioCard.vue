@@ -4,6 +4,13 @@ import type { Usuario } from '~/types/usuario'
 const props = defineProps<{
     usuario: Usuario
 }>()
+
+const emit = defineEmits<{
+    'cambiar-contrasena': [usuario: Usuario],
+    'cambiar-rol': [usuario: Usuario],
+    'activar-usuario': [usuario: Usuario],
+    'borrar-usuario': [usuario: Usuario],
+}>()
 </script>
 
 <template>
@@ -32,17 +39,20 @@ const props = defineProps<{
         <div class="mt-4 flex items-center justify-end gap-2">
             <UTooltip text="Cambiar contraseña">
                 <UButton icon="i-lucide-key-round" aria-label="Cambiar contraseña" variant="soft" size="xs"
-                    class="rounded-full bg-brand-yellow/20 text-brand-gray hover:bg-brand-yellow/35" />
+                    class="rounded-full bg-brand-yellow/20 text-brand-gray hover:bg-brand-yellow/35"
+                    @click="emit('cambiar-contrasena', props.usuario)" />
             </UTooltip>
 
             <UTooltip text="Cambiar rol">
                 <UButton icon="i-lucide-shield-half" aria-label="Cambiar rol" variant="soft" size="xs"
-                    class="rounded-full bg-brand-cyan/15 text-brand-cyan hover:bg-brand-cyan/25" />
+                    class="rounded-full bg-brand-cyan/15 text-brand-cyan hover:bg-brand-cyan/25"
+                    @click="emit('cambiar-rol', props.usuario)" />
             </UTooltip>
 
             <UTooltip text="Eliminar usuario">
                 <UButton icon="i-lucide-trash-2" aria-label="Eliminar usuario" variant="soft" size="xs"
-                    class="rounded-full bg-brand-red/12 text-brand-red hover:bg-brand-red/24" />
+                    class="rounded-full bg-brand-red/12 text-brand-red hover:bg-brand-red/24"
+                    @click="emit('borrar-usuario', props.usuario)" />
             </UTooltip>
 
             <UTooltip :text="props.usuario.activo ? 'Bloquear usuario' : 'Activar usuario'">
@@ -50,7 +60,8 @@ const props = defineProps<{
                     :aria-label="props.usuario.activo ? 'Bloquear usuario' : 'Activar usuario'" variant="soft" size="xs"
                     :class="props.usuario.activo
                         ? 'rounded-full bg-brand-red/12 text-brand-red hover:bg-brand-red/24'
-                        : 'rounded-full bg-brand-green/12 text-brand-green hover:bg-brand-green/24'" />
+                        : 'rounded-full bg-brand-green/12 text-brand-green hover:bg-brand-green/24'"
+                    @click="emit('activar-usuario', props.usuario)" />
             </UTooltip>
         </div>
     </UCard>
